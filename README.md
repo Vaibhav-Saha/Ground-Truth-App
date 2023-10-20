@@ -7,9 +7,9 @@ npm install <library_name>
 
 Such Libraries are:-
 
-Mongoose
-Path
-Express
+Mongoose,
+Path, and
+Express.
 
 After Successful Installation of all the libraries 
 
