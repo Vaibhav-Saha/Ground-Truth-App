@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    margin:0px;
+    margin-top:-10px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  z-index: 1;
+  }
+  .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+
+  .header {
+    height: 5rem; 
+    background-color: lightgray; 
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    margin-right:30px;
+    margin-left:15px;
+    margin-top:20px;
+  }
+
+  .item {
+    flex: 0 0 auto;
+    width: 22%; 
+    background-color: lightblue;
+    text-align: center;
+    margin-right: -15px;
+    padding-top:10px;
+    padding-bottom:-10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item1 {
+    flex: 0 0 auto;
+    width: 42%; 
+    background-color: lightblue;
+    margin-right: 20px;
+    margin-left:20px;
+    text-align: center;
+    padding-top: 20px;
+    padding-left:20px;
+    padding-right:20px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .icon {
+    width: 100px; 
+    height: 100px; 
+    margin-bottom: -10px; 
+  }
+
+  .icon2 {
+    width: 60px; 
+    height: 60px; 
+    margin-bottom: -10px; 
+  }
+
+</style>
+</head>
+<body>
+    
+  <div class="header">
+    <h1><center>Ground-Truth App</center></h1>
+  </div>
+  
+  <div class="container" id="itemContainer">
+    <div class="item1" onclick="showOverlay('Bump')">
+      <img class="icon" src="img/bump.png" alt="Icon 1">
+      <div><h3>Bump</h3></div>
+    </div>
+    <div class="item1" onclick="showOverlay('Pothole')">
+      <img class="icon" src="img/pothole.png" alt="Icon 2">
+      <div><h3>Pothole</h3></div>
+    </div>
+  </div>
+
+  <div class="container" id="itemContainer">
+    <div class="item" onclick="showOverlay('Left Turn')">
+      <img class="icon2" src="/img/left.png" alt="Icon 1">
+      <div><h3>Left Turn</h3></div>
+    </div>
+  <div class="item" onclick="showOverlay('U Turn')">
+      <img class="icon2" src="/img/uturn.png" alt="Icon 2">
+        <div><h3>U<br> Turn</h3></div>
+    </div>
+    <div class="item" onclick="showOverlay('Lane Change')">
+        <img class="icon2" src="/img/lane_change.png" alt="Icon 1">
+        <div><h3>Lane Change</h3></div>
+      </div>
+    <div class="item" onclick="showOverlay('Right Turn')">
+      <img class="icon2" src="/img/right.png" alt="Icon 2">
+      <div><h3>Right Turn</h3></div>
+    </div>
+</div>  
+
+  <div class="container" id="itemContainer">
+    <div class="item1" onclick="showOverlay('Harsh Brake')">
+      <img class="icon" src="/img/brake.png" alt="Icon 1">
+      <div><h3>Harsh Brake</h3></div>
+    </div>
+    <div class="item1" onclick="showOverlay('Over-Speeding')">
+      <img class="icon" src="/img/overspeeding.png" alt="Icon 2">
+      <div><h3>Over Speeding</h3></div>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay">
+    <div class="overlay-content">
+      <div id="overlay-content">Overlay Content</div>
+        <form class="container" method="post" action="/">
+          <input type="hidden" id="addi" name="addi">
+          <center>
+      <button style="background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 50px 50px;
+        margin-top:10px;
+        cursor: pointer;" onclick="hideOverlay()">Confirm</button></form>
+      </center>
+      <center>
+      <button style="background-color: red;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 50px 50px;
+        margin-top:-50px;
+        cursor: pointer;" onclick ="hideOverlay()">Go Back</button>
+      </center>
+    </div>
+  </div>
+
+<center><h3>&copy;IIT DELHI</h3></center>
+
+
+<script>
+
+  var label_name = "default";
+  function showOverlay(labels){
+    var div = document.getElementById('overlay-content');
+    label_name = labels;
+    div.innerHTML = "<center><h2>You clicked on label:<h2> <br><h1>" + labels + "</center> </h1>";
+    var overlay = document.getElementById("overlay");
+    overlay.style.display = "block";
+
+    var additionalValue = String(labels); // Set the value here
+    document.getElementById('addi').value = additionalValue;
+  }
+
+  function hideOverlay() {
+    var overlay = document.getElementById("overlay");
+    overlay.style.display = "none";
+  }
+
+</script>
+</body>
+</html>
