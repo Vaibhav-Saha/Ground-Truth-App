@@ -1,10 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require("body-parser");
-
 const app = express();
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use('/img',express.static(__dirname+'/img/'));
 
 mongoose.connect('mongodb://localhost:27017/tester', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -30,7 +28,7 @@ app.post('/', async (req, res) => {
 
 
 app.get("/",function(req,res){
-    res.sendFile(__dirname+"/index.html");
+    res.sendFile(__dirname+'/index.html');
 })
 
 app.listen(3000, () => {
